@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+    <nexuslink.charon.textcircleimageview.TextCircleImageView
+        android:id="@+id/item_img"
+        app:backgroundColor="@color/colorPrimary"
+        app:textColor="@color/colorAccent"
+        android:layout_margin="16dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center_vertical" />
+    <TextView
+        android:alpha="0.8"
+        android:id="@+id/item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="项目A"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/black"/>
+
+</LinearLayout>
