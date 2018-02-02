@@ -41,18 +41,20 @@ public class RecAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ((ViewHolder) holder).textView.setText(list.get(position));
         ((ViewHolder)holder).imageView.setText(String.valueOf(list.get(position)));
-        //((ViewHolder)holder).imageView.setDefaultBackgroundColor(position);
-        ((ViewHolder)holder).imageView.setTextColor("#998732");
+        ((ViewHolder)holder).imageView.setDefaultBackgroundColor(position);
+
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+     class  ViewHolder extends RecyclerView.ViewHolder {
         private TextCircleImageView imageView;
         private TextView textView;
+
         public ViewHolder(View itemView) {
             super(itemView);
             imageView = (TextCircleImageView) itemView.findViewById(R.id.item_img);
             textView = (TextView) itemView.findViewById(R.id.item_text);
-            imageView.setColorList(colorList);
+            //imageView.setColorList(colorList);
+            imageView.setFirst(true);
         }
     }
 

@@ -6,9 +6,11 @@
     android:layout_height="80dp">
     <nexuslink.charon.textcircleimageview.TextCircleImageView
         android:id="@+id/item_img"
-        app:backgroundColor="@color/colorPrimary"
-        app:textColor="@color/colorAccent"
         android:layout_margin="16dp"
+        app:text="Charon"
+        app:backgroundColor="@color/colorAccent"
+        app:textColor="@color/colorPrimary"
+        app:first="true"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_gravity="center_vertical" />

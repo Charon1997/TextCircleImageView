@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
-        list = Arrays.asList("陈恳", "张阳", "啥子", "狗屁","牛逼","傻逼啊");
+        list = Arrays.asList("Charon", "A", "Github", "笑笑","陈先生","EDG","北京");
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
