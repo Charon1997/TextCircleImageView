@@ -3,16 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:layout_height="wrap_content">
     <nexuslink.charon.textcircleimageview.TextCircleImageView
         android:id="@+id/item_img"
-        android:layout_margin="16dp"
         app:text="Charon"
         app:backgroundColor="@color/colorAccent"
-        app:textColor="@color/colorPrimary"
-        app:first="true"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
         android:layout_gravity="center_vertical" />
     <TextView
         android:alpha="0.8"

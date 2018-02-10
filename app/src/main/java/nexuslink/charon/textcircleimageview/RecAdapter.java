@@ -54,7 +54,7 @@ public class RecAdapter extends RecyclerView.Adapter {
             imageView = (TextCircleImageView) itemView.findViewById(R.id.item_img);
             textView = (TextView) itemView.findViewById(R.id.item_text);
             //imageView.setColorList(colorList);
-            imageView.setFirst(true);
+            //imageView.setFirst(true);
         }
     }
 

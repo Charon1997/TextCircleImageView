@@ -4,9 +4,14 @@
 将CircleView和Text结合，适用于多种场景使用
 
 ## 功能
+####V1.0.0
 1. 自定义背景，文字颜色
 2. 支持3字以内的文字
 3. 支持设定颜色集
+
+####V1.0.1
+1. 消除小bug
+2. 调整字体大小
 ## 预览
 <img src="./image/image_001.png" height="500" />
 单文字效果
@@ -68,7 +73,7 @@ textCircleImageView.setFirst(true);
 ```
 
 	dependencies {
-	        compile 'com.github.Charon1997:TextCircleImageView:1.0.0'
+	        compile 'com.github.Charon1997:TextCircleImageView:1.0.1'
 	}
 
 
@@ -95,7 +100,7 @@ textCircleImageView.setFirst(true);
 	<dependency>
 	    <groupId>com.github.Charon1997</groupId>
 	    <artifactId>TextCircleImageView</artifactId>
-	    <version>1.0.0</version>
+	    <version>1.0.1</version>
 	</dependency>
 
 ```

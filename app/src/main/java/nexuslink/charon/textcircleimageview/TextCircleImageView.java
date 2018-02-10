@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,9 +27,12 @@ public class TextCircleImageView extends android.support.v7.widget.AppCompatImag
     private List<String> colorList;
     private String backgroundColor = "#000000";
     private String textColor = "#FFFFFF";
+    private float[] stringSize = {(float) 0.7,1, (float) 1.2};
     private Paint backgroundPaint, textPaint;
     private boolean isFirst;
-
+    private final int mRadius = 150;
+    private final static boolean DEBUG = true;
+    private final static String TAG = TextCircleImageView.class.getSimpleName();
 
     //让View兼容xml与Java
     public TextCircleImageView(Context context) {
@@ -76,22 +80,29 @@ public class TextCircleImageView extends android.support.v7.widget.AppCompatImag
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int width = getDefaultSize(widthMeasureSpec);
-        int height = getDefaultSize(heightMeasureSpec);
+        int width = getDefaultSize(widthMeasureSpec,true);
+        int height = getDefaultSize(heightMeasureSpec,false);
         int radius = Math.min(width, height);
+        if (DEBUG) {
+            Log.d(TAG, "onMeasure: width"+width+"height"+height);
+        }
         setMeasuredDimension(radius, radius);
     }
 
-    private int getDefaultSize(int measureSpec) {
+    private int getDefaultSize(int measureSpec,boolean width) {
         int result;
         int mode = MeasureSpec.getMode(measureSpec);
         int size = MeasureSpec.getSize(measureSpec);
-        //准确的值
+        //准确的值 parent dx
         if (mode == MeasureSpec.EXACTLY) {
             result = size;
         } else {
             //最少20
-            result = 20 + getPaddingTop() + getPaddingBottom();
+            if (width) {
+                result = mRadius + getPaddingLeft() + getPaddingRight();
+            }else {
+                result = mRadius + getPaddingTop() + getPaddingBottom();
+            }
             //最少的
             if (mode == MeasureSpec.AT_MOST) {
                 result = Math.min(result, size);
@@ -108,17 +119,28 @@ public class TextCircleImageView extends android.support.v7.widget.AppCompatImag
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        final int paddingLeft = getPaddingLeft();
+        final int paddingRight = getPaddingRight();
+        final int paddingTop = getPaddingTop();
+        final int paddingBottom = getPaddingBottom();
+        int width = getWidth() - paddingLeft - paddingRight;
+        int height = getHeight() - paddingTop - paddingBottom;
+        int radius = Math.min(width, height)/2;
+        if (DEBUG) {
+            Log.d(TAG, "onDraw: left"+paddingLeft+"right"+paddingRight+"top"+paddingTop+"bottom"+paddingBottom+"width"+width+"height"+height+"radius"+radius);
+        }
         //最长3个字
         int stringNum = Math.min(getText().length(), 3);
         backgroundPaint.setColor(Color.parseColor(getBackgroundViewColor()));
-        canvas.drawCircle(getWidth() / 2, getHeight() / 2, Math.min(getWidth() / 2, getHeight() / 2), backgroundPaint);
+
+        canvas.drawCircle(paddingLeft + width / 2, paddingTop + height / 2,radius, backgroundPaint);
         textPaint.setColor(Color.parseColor(getTextColor()));
         //根据字数多少设定字大小
-        textPaint.setTextSize(Math.min(getWidth() / 2 / stringNum, getHeight() / 2 / stringNum));
+        textPaint.setTextSize(radius/2/stringSize[stringNum-1]);
         textPaint.setTextAlign(Paint.Align.CENTER);
         Paint.FontMetricsInt fontMetrics = textPaint.getFontMetricsInt();
         int baseline = (getMeasuredHeight() - fontMetrics.bottom - fontMetrics.top) / 2;
-        canvas.drawText(getText(), getWidth() / 2, baseline, textPaint);
+        canvas.drawText(getText(), paddingLeft + radius, baseline, textPaint);
     }
 
     public String getText() {
